@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: book_deployment
+  labels:
+    app: book_deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: book_deployment
+  template:
+    metadata:
+      name: book_deployment
+      labels:
+        app: book_deployment
+    spec:
+      containers:
+        - name: book_deployment
+          image: 'paulodhiambo/kyosk:latest'
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+              protocol: TCP
+      restartPolicy: Always
+      
