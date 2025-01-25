@@ -34,6 +34,8 @@ jobs:
             gradle-${{ runner.os }}-
 
       - name: Run Tests
+        env:
+          MONGO_URI: ${{ secrets.MONGO_URI }}
         run: ./gradlew clean test
 
   build:
@@ -62,6 +64,8 @@ jobs:
             gradle-${{ runner.os }}-
 
       - name: Build the JAR
+        env:
+          MONGO_URI: ${{ secrets.MONGO_URI }}
         run: ./gradlew clean build -x test
 
       - name: Build Docker Image
