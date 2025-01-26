@@ -1,13 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: book_service
+  name: book-service
 spec:
   selector:
-    app: book_service
+    app: book-deployment
   ports:
     - protocol: TCP
-      port: 80
+      port: 8080
       targetPort: 8080
   type: NodePort
-  
