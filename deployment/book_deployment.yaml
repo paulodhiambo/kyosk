@@ -1,26 +1,30 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: book_deployment
+  name: book-deployment
   labels:
-    app: book_deployment
+    app: book-deployment
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: book_deployment
+      app: book-deployment
   template:
     metadata:
-      name: book_deployment
       labels:
-        app: book_deployment
+        app: book-deployment
     spec:
       containers:
-        - name: book_deployment
+        - name: book-deployment
           image: 'paulodhiambo/kyosk:latest'
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           ports:
-            - containerPort: 80
+            - containerPort: 8080
               protocol: TCP
+          env:
+            - name: MONGO_URI
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-uri-secret
+                  key: MONGO_URI
       restartPolicy: Always
-      

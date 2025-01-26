@@ -1,4 +1,4 @@
-APP_NAME := kyosk
+APP_NAME := book-service
 NAMESPACE := default
 DEPLOYMENT_DIR := deployment
 
@@ -28,9 +28,9 @@ clean:
 # Get the URL of the service exposed by Minikube
 .PHONY: service-url
 service-url:
-	$(MINIKUBE) service $(APP_NAME) --url -n $(NAMESPACE)
+	$(MINIKUBE) service $(APP_NAME) --url
 
 # Restart the deployment
 .PHONY: restart
 restart:
-	$(KUBECTL) rollout restart deployment/$(APP_NAME) -n $(NAMESPACE)
+	$(KUBECTL) rollout restart deployment/$(APP_NAME)
